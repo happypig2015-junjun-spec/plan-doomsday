@@ -1,0 +1,366 @@
+            "你循着九条线索的指引，来到避难所最深处一扇从未见过的门前。门后没有"
+            "雾气，只有温暖而安静的光，像一个等待被结束的梦。",
+            "门心刻着一行字：“入此门者，当舍一切重来。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "推门，走入光中",        .target = "core_anchor" },
+            Choice{ .text = "还没有准备好，退回去",  .target = "hub" },
+        }
+    },
+    Scene{
+        .id = "core_anchor",
+        .title = "锚点核心",
+        .paragraphs =
+        {
+            "光的中央，悬浮着这座城市所有时间线的“锚点”，它随着你的心跳轻轻搏动。",
+            "你想起收容区里那个和你一模一样的人，想起停尸房里编号 000 的躯体，"
+            "想起录音里那句“集齐之后，永远不要再回来”。",
+            "你可以选择关闭它——这一次，你将不再醒来。"
+        },
+        .choices =
+        {
+            // 原真结局（9 条线索）
+            Choice{ .text = "亲手关闭锚点，终结一切循环", .target = "",
+                    .endingId = "ending_true" },
+            // 扩展：炸毁锚点（同归于尽）
+            Choice{ .text = "引爆炸药，与锚点同归于尽",   .target = "",
+                    .requireAll = { "tool_bomb" },          .endingId = "ending_bomb" },
+            // 扩展：自己成为新锚点
+            Choice{ .text = "走进光中，成为新的锚点",     .target = "",
+                    .requireAll = { "S4" },                 .endingId = "ending_newanchor" },
+            // 扩展：用抗体让病毒沉睡，与世界共存
+            Choice{ .text = "注射抗体，让病毒随锚点沉睡", .target = "",
+                    .requireAll = { "S5", "tool_antidote" },.endingId = "ending_symbiosis" },
+            // 扩展：放下，拒绝介入（旁观者）
+            Choice{ .text = "放下一切，转身离开，不再介入", .target = "",
+                    .requireAll = { "S4" },                 .endingId = "ending_watcher" },
+            // 完美真结局：15 条全齐
+            Choice{ .text = "【15 条真相全齐】以完整之心，轻轻合上时间", .target = "",
+                    .requireAll = { "B1","B2","B3","B4","B5",
+                                    "A1","A2","A3","A4","A5",
+                                    "S1","S2","S3","S4","S5" },
+                    .endingId = "ending_true_complete" },
+            Choice{ .text = "再给自己一次“重来”",    .target = "hub" },
+        }
+    },
+
+    //==========================================================================
+    // 【扩展区域 13】旧广播大楼（广播女声真身 · 林晚）
+    //==========================================================================
+    Scene{
+        .id = "radio_outside",
+        .title = "旧广播大楼 · 门外",
+        .paragraphs =
+        {
+            "灰白色的广播大楼矗立在雾中，楼顶天线像一片枯树林。",
+            "大门虚掩，门缝里透出微弱的红光；侧门挂着一把生锈的锁。"
+        },
+        .choices =
+        {
+            Choice{ .text = "推开虚掩的大门",          .target = "radio_lobby" },
+            Choice{ .text = "用撬棍撬开侧门",          .target = "radio_side",
+                    .requireAll = { "tool_crowbar" } },
+            Choice{ .text = "返回避难所",              .target = "hub" },
+        }
+    },
+    Scene{
+        .id = "radio_lobby",
+        .title = "广播大楼 · 大厅",
+        .paragraphs =
+        {
+            "大厅里散落着翻倒的桌椅，前台的广播还在播放，只是声音断断续续。",
+            "一个女人的声音从二楼直播间传来，她在循环播放同一段录音，然后停顿，"
+            "再播放——仿佛在等什么人。"
+        },
+        .choices =
+        {
+            Choice{ .text = "上二楼直播间",            .target = "radio_studio" },
+            Choice{ .text = "走进一楼设备间",          .target = "radio_equip" },
+            Choice{ .text = "退出大楼",                .target = "radio_outside" },
+        }
+    },
+    Scene{
+        .id = "radio_equip",
+        .title = "广播大楼 · 设备间",
+        .paragraphs =
+        {
+            "设备间里，一台老式发射机还亮着红灯，只是缺了总控钥匙。",
+            "桌上有一张工作证，照片上的女人眉眼温柔，名字写着：林晚，首席主播。"
+        },
+        .choices =
+        {
+            Choice{ .text = "收起工作证",              .target = "radio_lobby" },
+        }
+    },
+    Scene{
+        .id = "radio_side",
+        .title = "广播大楼 · 侧门",
+        .paragraphs =
+        {
+            "侧门通向消防通道，墙上贴着灰雾日当天的节目单：",
+            "“00:00 特别节目《回声》——主播：林晚。”",
+            "节目单边角，用红笔写着一行小字：“如果我开始循环，请关掉我。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "进入大楼",                .target = "radio_lobby" },
+        }
+    },
+    Scene{
+        .id = "radio_studio",
+        .title = "广播大楼 · 直播间",
+        .paragraphs =
+        {
+            "直播间里，林晚坐在话筒前，她没有回头，只是轻声说：",
+            "“你终于来了。我已经在这里，循环了……我数不清多少次。”",
+            "“我是第一个自愿走进锚点的人。我以为能救回我的女儿，却把整座城市拖进了"
+            "循环。广播里的女声，是我留给你的路标。”",
+            "她转过身，把一把总控钥匙递给你：“顶层发射机，可以让全城的人，在最后一刻"
+            "听见真相。怎么用，由你决定。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "（接过广播总控钥匙）",    .target = "radio_lobby",
+                    .grantedClue = "tool_radio_key" },
+            Choice{ .text = "关掉她的录音设备",        .target = "radio_studio_off" },
+        }
+    },
+    Scene{
+        .id = "radio_studio_off",
+        .title = "广播大楼 · 直播间",
+        .paragraphs =
+        {
+            "你按下停止键，林晚的身影在寂静中变得透明，她如释重负地笑了：",
+            "“谢谢你，让我终于……不用再等了。”",
+            "直播间的红灯熄灭，整座城市的广播，第一次彻底安静。"
+        },
+        .choices =
+        {
+            Choice{ .text = "退出直播间",              .target = "radio_lobby" },
+        }
+    },
+    Scene{
+        .id = "radio_roof",
+        .title = "广播大楼 · 顶层发射机",
+        .paragraphs =
+        {
+            "顶层发射机需要总控钥匙。"
+        },
+        .choices =
+        {
+            Choice{ .text = "插入钥匙，开启全国频段",  .target = "radio_roof_on",
+                    .requireAll = { "tool_radio_key" } },
+            Choice{ .text = "退回",                    .target = "radio_lobby" },
+        }
+    },
+    Scene{
+        .id = "radio_roof_on",
+        .title = "广播大楼 · 顶层",
+        .paragraphs =
+        {
+            "你把全部真相通过全国频段播送出去。这一次，不止是这座城市，整个世界都在听。",
+            "你忽然明白林晚的苦心：她用自己的循环，为你铺了一条比信号塔更远的路。"
+        },
+        .choices =
+        {
+            Choice{ .text = "下楼",                    .target = "radio_lobby" },
+        }
+    },
+    Scene{
+        .id = "death_radio",
+        .title = "",
+        .paragraphs =
+        {
+            "你在黑暗中摸索设备，裸露的高压线在雾里闪了一下。你最后听见的，是自己的声音"
+            "从无数个喇叭里，循环着同一句没说完的话。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【扩展区域 14】港口码头（老船长 · 远航结局）
+    //==========================================================================
+    Scene{
+        .id = "dock_gate",
+        .title = "港口码头 · 入口",
+        .paragraphs =
+        {
+            "咸腥的海风穿过雾，码头的吊臂像巨兽的骨架。",
+            "几艘船静静泊在港内，其中一艘“远星号”货轮亮着微弱的灯。"
+        },
+        .choices =
+        {
+            Choice{ .text = "登上远星号",              .target = "dock_ship" },
+            Choice{ .text = "搜索码头仓库",            .target = "dock_warehouse" },
+            Choice{ .text = "前往灯塔",                .target = "dock_lighthouse" },
+            // 远航结局：拿到船钥匙与舱单后，可选择离港
+            Choice{ .text = "【远航】登船，驶向雾外的世界", .target = "",
+                    .requireAll = { "tool_boat_key", "B5" }, .endingId = "ending_voyage" },
+            Choice{ .text = "返回避难所",              .target = "hub" },
+        }
+    },
+    Scene{
+        .id = "dock_ship",
+        .title = "远星号 · 甲板",
+        .paragraphs =
+        {
+            "甲板上，一位老船长靠着栏杆，他的眼睛在雾里依然明亮：",
+            "“年轻人，你是这几天第一个走到这里的活人。”",
+            "“这艘船加满了油，能驶到任何一座没有被雾笼罩的城市。我老了，走不动了，"
+            "但你可以。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "请求查看舱单",            .target = "dock_manifest" },
+            Choice{ .text = "接受船钥匙，准备远航",    .target = "dock_sail",
+                    .requireNone = { "tool_boat_key" } },
+            Choice{ .text = "下船",                    .target = "dock_gate" },
+        }
+    },
+    Scene{
+        .id = "dock_manifest",
+        .title = "远星号 · 船长室",
+        .paragraphs =
+        {
+            "老船长把舱单递给你：“灰雾日前，有人半夜往我船上装了一批密封容器，"
+            "目的地写着‘循环港’。我觉得不对劲，就没开船。”",
+            "你翻到那一页，舱单上的签名是 ECHO，时间是午夜。"
+        },
+        .choices =
+        {
+            Choice{ .text = "（收好异常舱单 B5）",     .target = "dock_ship",
+                    .grantedClue = "B5" },
+        }
+    },
+    Scene{
+        .id = "dock_sail",
+        .title = "远星号",
+        .paragraphs =
+        {
+            "老船长把船钥匙放进你手心：“走吧，趁雾还没追上来。”",
+            "你发动引擎，货轮缓缓离港。"
+        },
+        .choices =
+        {
+            Choice{ .text = "（收下船钥匙）",          .target = "dock_ship",
+                    .grantedClue = "tool_boat_key" },
+        }
+    },
+    Scene{
+        .id = "dock_warehouse",
+        .title = "码头 · 仓库",
+        .paragraphs =
+        {
+            "仓库里堆满了集装箱，其中一个没有锁，里面是成箱的、印着 ECHO 标志的密封容器，"
+            "和舱单上的描述完全一致。",
+            "容器表面凝着青黑色的霜。"
+        },
+        .choices =
+        {
+            Choice{ .text = "撬开一个容器",            .target = "death_dock" },
+            Choice{ .text = "退出去",                  .target = "dock_gate" },
+        }
+    },
+    Scene{
+        .id = "dock_lighthouse",
+        .title = "码头 · 灯塔",
+        .paragraphs =
+        {
+            "灯塔的灯还能转，只是缺了电子管。在这里点亮，能为远海的船指引方向。"
+        },
+        .choices =
+        {
+            Choice{ .text = "装上电子管，点亮灯塔",    .target = "dock_lighthouse_on",
+                    .requireAll = { "tool_radiopart" } },
+            Choice{ .text = "徒手攀爬灯塔外壁",        .target = "death_dock" },
+            Choice{ .text = "下去",                    .target = "dock_gate" },
+        }
+    },
+    Scene{
+        .id = "dock_lighthouse_on",
+        .title = "码头 · 灯塔",
+        .paragraphs =
+        {
+            "光柱刺破海雾，一圈圈扫过海面。你看见远方有零星的灯火回应——",
+            "这个世界，还有人活着。"
+        },
+        .choices =
+        {
+            Choice{ .text = "下去",                    .target = "dock_gate" },
+        }
+    },
+    Scene{
+        .id = "death_dock",
+        .title = "",
+        .paragraphs =
+        {
+            "容器裂开的瞬间，青黑色的雾气扑面而来 / 你从灯塔外壁滑落。咸腥的海风里，"
+            "你听见锚点的心跳，和海浪，合成了同一个节拍。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【扩展区域 15】第一小学（幸存女孩小雨 · 壁画线索）
+    //==========================================================================
+    Scene{
+        .id = "school_gate",
+        .title = "第一小学 · 校门",
+        .paragraphs =
+        {
+            "小学校门的铁栅栏上挂着褪色的彩旗，操场空空荡荡，秋千在风里轻轻晃。",
+            "教学楼的墙上，从远处就能看见大片彩色的壁画。"
+        },
+        .choices =
+        {
+            Choice{ .text = "走进教学楼",              .target = "school_hall" },
+            Choice{ .text = "先去看墙上的壁画",        .target = "school_mural" },
+            // 传承结局：把真相与抗体交给小雨
+            Choice{ .text = "【传承】把真相和抗体托付给小雨", .target = "",
+                    .requireAll = { "B4", "tool_antidote" }, .endingId = "ending_legacy" },
+            Choice{ .text = "返回避难所",              .target = "hub" },
+        }
+    },
+    Scene{
+        .id = "school_hall",
+        .title = "第一小学 · 走廊",
+        .paragraphs =
+        {
+            "走廊两侧的教室门都开着，课桌上还摆着没来得及收的课本。",
+            "最里面的教室传来轻轻的、压抑的哭声。"
+        },
+        .choices =
+        {
+            Choice{ .text = "循声走进教室",            .target = "school_classroom" },
+            Choice{ .text = "走进教师办公室",          .target = "school_office" },
+            Choice{ .text = "退出教学楼",              .target = "school_gate" },
+        }
+    },
+    Scene{
+        .id = "school_classroom",
+        .title = "第一小学 · 教室",
+        .paragraphs =
+        {
+            "一个小女孩缩在课桌下，她叫小雨，怀里抱着一盒蜡笔。",
+            "看见你没有恶意，她小声说：",
+            "“老师说，只要把‘醒来的人’画在墙上，他们就不会再迷路了。”",
+            "“我画了好多好多……每一个醒来的人，胸口都连着一根线，线的那头，是一个"
+            "发光的圆圈。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "让她带你去看壁画",        .target = "school_mural" },
+            Choice{ .text = "把食物留给她",            .target = "school_classroom_food" },
+        }
+    },
+    Scene{
+        .id = "school_classroom_food",
+        .title = "第一小学 · 教室",
+        .paragraphs =
+        {
+            "你把仅有的食物分给小雨，她第一次露出笑容，把一张画着太阳的小画塞给你：",
+            "“这个给你，这样你走到哪里，都不会黑了。”"
+        },
+        .choices =
+        {

@@ -1,0 +1,403 @@
+                    .grantedClue = "S3" },
+        }
+    },
+    Scene{
+        .id = "death_sewer",
+        .title = "",
+        .paragraphs =
+        {
+            "污水漫过口鼻，青黑色细丝顺着七窍钻入。你在自己的倒影里，看见无数张"
+            "循环中沉没的脸。"
+        },
+        .choices = {}, .isDeath = true
+    },
+    Scene{
+        .id = "death_lab_gate",
+        .title = "",
+        .paragraphs =
+        {
+            "警报炸开，门缝喷出的白雾先一步把你吞没。你最后看见的，是自己的手臂"
+            "以肉眼可见的速度变得透明。"
+        },
+        .choices = {}, .isDeath = true
+    },
+    Scene{
+        .id = "death_lab_containment",
+        .title = "",
+        .paragraphs =
+        {
+            "青黑色雾气裹住你，没有疼痛，只有一种被无数双眼睛同时注视的感觉——"
+            "仿佛过去与未来的每一条时间线，都在这一刻看见了你。"
+        },
+        .choices = {}, .isDeath = true
+    },
+    Scene{
+        .id = "death_lab_pull",
+        .title = "",
+        .paragraphs =
+        {
+            "红色警报铺满房间，喷淋头喷出白雾，铁门一道道落下。你以为自己在"
+            "毁掉真相，却只是毁掉了这条时间线唯一的出口。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【区域 8】红区（3 个普通场景 + 2 个死亡场景）
+    //==========================================================================
+    Scene{
+        .id = "redzone_street",
+        .title = "红区 · 封锁街道",
+        .paragraphs =
+        {
+            "雾气浓得几乎看不见指尖，废弃车辆在雾里排成一条死寂的河。",
+            "三条岔路分别通向尖顶的教堂、挂着彩旗的学校、以及一栋黑沉沉的医院；"
+            "雾深处有缓慢拖动的声响。"
+        },
+        .choices =
+        {
+            Choice{ .text = "进入教堂",              .target = "redzone_church" },
+            Choice{ .text = "前往学校",              .target = "redzone_school" },
+            Choice{ .text = "前往医院",              .target = "hospital_lobby" },
+            Choice{ .text = "循着拖动声走进雾深处",  .target = "death_redzone" },
+            Choice{ .text = "退回检查站",            .target = "cp_deepgate" },
+        }
+    },
+    Scene{
+        .id = "redzone_church",
+        .title = "红区 · 教堂",
+        .paragraphs =
+        {
+            "教堂里聚着十几个幸存者，烛光摇曳。一位老神父把你领到告解室：",
+            "“医院里躺着第 0 号病人，学校楼顶有还能用的救援电台。孩子，记住——"
+            "在这里，真相比子弹更能救命。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "记下情报，离开教堂",    .target = "redzone_street" },
+        }
+    },
+    Scene{
+        .id = "redzone_school",
+        .title = "红区 · 学校",
+        .paragraphs =
+        {
+            "教学楼里空无一人，楼顶广播室的设备半新，只是缺了一支关键电子管。",
+            "操场方向传来成群游荡的脚步声。"
+        },
+        .choices =
+        {
+            Choice{ .text = "装上电子管，呼叫救援",  .target = "redzone_school_call",
+                    .requireAll = { "tool_radiopart" } },
+            Choice{ .text = "徒手爬上旗杆大声呼救",  .target = "death_redzone_school" },
+            Choice{ .text = "离开学校",              .target = "redzone_street" },
+        }
+    },
+    Scene{
+        .id = "redzone_school_call",
+        .title = "红区 · 学校",
+        .paragraphs =
+        {
+            "电流声后，一个声音回应：“收到，救援直升机将在天亮抵达，请坚持。”",
+            "你松了口气，却在设备玻璃的倒影里看见：自己的身后，空无一人的楼道"
+            "站满了“人”。你忽然明白，这一幕你已经经历过很多次。"
+        },
+        .choices =
+        {
+            Choice{ .text = "退出广播室",            .target = "redzone_street" },
+        }
+    },
+    Scene{
+        .id = "death_redzone",
+        .title = "",
+        .paragraphs =
+        {
+            "拖动声越来越近，你走进雾最浓的地方。一张脸从雾里贴到你面前——它"
+            "穿着和你一样的衣服，带着和你一样的伤痕，只是没有眼珠。"
+        },
+        .choices = {}, .isDeath = true
+    },
+    Scene{
+        .id = "death_redzone_school",
+        .title = "",
+        .paragraphs =
+        {
+            "你的呼喊在操场上空回荡，回应它的是齐刷刷抬起的头。无数身影从教学楼"
+            "涌出，旗杆下的空地，成了这条时间线的终点。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【区域 9】医院（4 个普通场景 + 2 个死亡场景）
+    //==========================================================================
+    Scene{
+        .id = "hospital_lobby",
+        .title = "医院 · 大厅",
+        .paragraphs =
+        {
+            "大厅的挂号屏还亮着，滚动着永远叫不完的号。",
+            "电梯停在底层，楼梯通向病房楼层；ICU 在走廊东侧；地下一层是停尸房，"
+            "门禁锁着。"
+        },
+        .choices =
+        {
+            Choice{ .text = "前往病房楼层",          .target = "hospital_ward" },
+            Choice{ .text = "穿防护服进入 ICU",      .target = "hospital_icu",
+                    .requireAll = { "tool_protection" } },
+            Choice{ .text = "用密码打开停尸房门禁",  .target = "hospital_morgue",
+                    .requireAll = { "tool_codes" } },
+            Choice{ .text = "徒手撬开停尸房门",      .target = "death_hospital" },
+            Choice{ .text = "离开医院",              .target = "redzone_street" },
+        }
+    },
+    Scene{
+        .id = "hospital_ward",
+        .title = "医院 · 病房",
+        .paragraphs =
+        {
+            "病房床头卡上的入院时间，全部是灰雾日凌晨同一时刻，与 A1 病历完全"
+            "吻合——“同时按下开关”。",
+            "值班室白板上写着：“全部患者均有同一特征：体内检出‘回溯性标记’。”"
+        },
+        .choices =
+        {
+            Choice{ .text = "返回大厅",              .target = "hospital_lobby" },
+        }
+    },
+    Scene{
+        .id = "hospital_icu",
+        .title = "医院 · ICU",
+        .paragraphs =
+        {
+            "一位插着管的研究员尚有微弱意识，他看见防护服上的灰尘，艰难地开口：",
+            "“停尸房……第 0 号……不是病人，是‘锚点’本身……别再让他醒来……”"
+            "心电监护仪随即拉成一条直线。"
+        },
+        .choices =
+        {
+            Choice{ .text = "退出 ICU",              .target = "hospital_lobby" },
+        }
+    },
+    Scene{
+        .id = "hospital_morgue",
+        .title = "医院 · 停尸房",
+        .paragraphs =
+        {
+            "冷柜最深处，编号 000 的抽屉拉开：里面躺着一具盖着白布的躯体，"
+            "胸前标签写着——“来源：时间锚点；身份：未知（与报告人面容一致）”。",
+            "你颤抖着揭开白布，看见的是自己沉睡的脸。"
+        },
+        .choices =
+        {
+            Choice{ .text = "合上抽屉，退出停尸房",  .target = "hospital_lobby" },
+        }
+    },
+    Scene{
+        .id = "death_hospital",
+        .title = "",
+        .paragraphs =
+        {
+            "你用力撬门，停尸房的冷柜在身后一个个自行滑开。你回头，每一个抽屉里"
+            "都躺着同一个人，他们同时睁开了眼。"
+        },
+        .choices = {}, .isDeath = true
+    },
+    Scene{
+        .id = "death_hospital_icu",
+        .title = "",
+        .paragraphs =
+        {
+            "没有防护服，ICU 高浓度的空气在你踏入的瞬间侵入肺腑。你看见自己的手"
+            "迅速布满青黑纹路，监护仪上，你的心跳和那些患者并成了同一条线。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【区域 10】信号塔（3 个普通场景 + 1 个死亡场景）
+    //==========================================================================
+    Scene{
+        .id = "tower_base",
+        .title = "信号塔 · 塔底",
+        .paragraphs =
+        {
+            "锈红色的信号塔直插灰雾，塔底机房的门虚掩，旋转楼梯向上盘旋，"
+            "望不到头。"
+        },
+        .choices =
+        {
+            Choice{ .text = "沿旋转楼梯向上攀爬",    .target = "tower_climb" },
+            Choice{ .text = "返回",                  .target = "hub" },
+        }
+    },
+    Scene{
+        .id = "tower_climb",
+        .title = "信号塔 · 楼梯",
+        .paragraphs =
+        {
+            "风从钢梁间呼啸穿过，楼梯在脚下轻轻摇晃。你已攀到云端，下方城市"
+            "缩成一片灰色的棋盘。"
+        },
+        .choices =
+        {
+            Choice{ .text = "稳住，继续登顶",        .target = "tower_top" },
+            Choice{ .text = "俯身向下张望",          .target = "death_tower" },
+            Choice{ .text = "退回塔底",              .target = "tower_base" },
+        }
+    },
+    Scene{
+        .id = "tower_top",
+        .title = "信号塔 · 广播室",
+        .paragraphs =
+        {
+            "塔顶广播室的发射机仍可使用，只是缺了电子管。在这里，声音可以覆盖"
+            "整座城市。"
+        },
+        .choices =
+        {
+            Choice{ .text = "装上电子管，向全城广播真相", .target = "tower_broadcast",
+                    .requireAll = { "tool_radiopart" } },
+            Choice{ .text = "强行短接发射机",      .target = "death_tower" },
+            Choice{ .text = "下楼",                .target = "tower_climb" },
+        }
+    },
+    Scene{
+        .id = "tower_broadcast",
+        .title = "信号塔 · 广播",
+        .paragraphs =
+        {
+            "你对着话筒，把“回声”、投毒、零号宿主与循环的一切，一字一句广播出去。",
+            "你想象无数人在收音机前抬头——但你也清楚，若你此刻死去、再次回溯，"
+            "这场广播将从未发生。要让真相留下，唯有让自己不再醒来。",
+            "话音落下，你忽然看见，远方的天边，泛起了一道金色的光。",
+            "是……黎明吗？"
+        },
+        .choices =
+        {
+            // 虚假黎明陷阱：在“金光”前停下，便会被锚点奖赏一层梦
+            Choice{ .text = "如释重负，迎接眼前的黎明", .target = "",
+                    .endingId = "ending_false_dawn" },
+            Choice{ .text = "保持清醒，那光来得太巧，下楼", .target = "tower_base" },
+        }
+    },
+    Scene{
+        .id = "death_tower",
+        .title = "",
+        .paragraphs =
+        {
+            "脚下一滑 / 电弧一闪，你从钢梁间坠落。风声里，城市的灯光在你眼前迅速"
+            "放大，最后归于一片漆黑。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【区域 11】城市供水厂（3 个普通场景 + 2 个死亡场景）
+    //==========================================================================
+    Scene{
+        .id = "wp_gate",
+        .title = "供水厂 · 大门",
+        .paragraphs =
+        {
+            "供水厂安静得反常，蓄水池像一面面灰色的镜子。中控楼的大门锁着数字密码。"
+        },
+        .choices =
+        {
+            Choice{ .text = "用密码打开中控楼",      .target = "wp_tanks",
+                    .requireAll = { "tool_codes" } },
+            Choice{ .text = "翻越围墙进入",          .target = "death_wp" },
+            Choice{ .text = "返回",                  .target = "hub" },
+        }
+    },
+    Scene{
+        .id = "wp_tanks",
+        .title = "供水厂 · 水箱群",
+        .paragraphs =
+        {
+            "巨大的水箱顶部，焊着一台不属于供水厂的“自动投放装置”，出料口残留着"
+            "青黑色附着物。"
+        },
+        .choices =
+        {
+            Choice{ .text = "用天台残留样本比对",    .target = "wp_tanks_match",
+                    .requireAll = { "tool_tankres" } },
+            Choice{ .text = "用管钳关闭投放总阀",    .target = "wp_tanks_valve",
+                    .requireAll = { "tool_wrench" } },
+            Choice{ .text = "下到敞开的清水池查看",  .target = "death_wp_drown" },
+            Choice{ .text = "进入中控室",            .target = "wp_control" },
+        }
+    },
+    Scene{
+        .id = "wp_tanks_match",
+        .title = "供水厂 · 水箱群",
+        .paragraphs =
+        {
+            "比对结果完全一致：投放装置的残留物，与居民楼水箱、超市瓶底、诊所涂片"
+            "里的东西同源。",
+            "你终于从“物证”上锁定了污染的起点。"
+        },
+        .choices =
+        {
+            Choice{ .text = "返回",                  .target = "wp_tanks" },
+        }
+    },
+    Scene{
+        .id = "wp_tanks_valve",
+        .title = "供水厂 · 水箱群",
+        .paragraphs =
+        {
+            "你用管钳死死拧住总阀，管道发出沉闷的轰鸣，投放装置的指示灯一盏盏"
+            "熄灭。",
+            "这一条时间线里，被污染的水终于停止了输送——虽然你知道，回溯之后，"
+            "它仍会重来。"
+        },
+        .choices =
+        {
+            Choice{ .text = "返回",                  .target = "wp_tanks" },
+        }
+    },
+    Scene{
+        .id = "wp_control",
+        .title = "供水厂 · 中控室",
+        .paragraphs =
+        {
+            "电脑里的投放记录从灰雾日前 15 天开始，执行方一栏始终是 ECHO，"
+            "触发条件写着一行冰冷的字：",
+            "“每当锚点发生一次回溯，自动向对应时间线补投一次。”",
+            "记录与 S3 互为印证——你越挣扎，它越严密。"
+        },
+        .choices =
+        {
+            Choice{ .text = "离开供水厂",            .target = "wp_gate" },
+        }
+    },
+    Scene{
+        .id = "death_wp",
+        .title = "",
+        .paragraphs =
+        {
+            "你翻上围墙，电网的蓝光在雾里一闪。你甚至没来得及感到疼痛，世界就"
+            "连同电流一起，归于寂静。"
+        },
+        .choices = {}, .isDeath = true
+    },
+    Scene{
+        .id = "death_wp_drown",
+        .title = "",
+        .paragraphs =
+        {
+            "清水池的水面下，青黑色细丝像水草一样缠上你的脚踝，把你缓缓拖向池底。"
+            "你最后看见的，是水面上一圈圈扩散的、属于你自己的倒影。"
+        },
+        .choices = {}, .isDeath = true
+    },
+
+    //==========================================================================
+    // 【区域 12】锚点核心（通往真结局）
+    //==========================================================================
+    Scene{
+        .id = "core_gate",
+        .title = "锚点核心 · 门前",
+        .paragraphs =
+        {

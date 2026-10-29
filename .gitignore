@@ -1,0 +1,12 @@
+# 编译产物
+doomsday
+*.o
+*.obj
+
+# 存档文件（v1.0.2 起游戏运行时生成）
+doomsday_save*.dat
+
+# 系统/编辑器文件
+.DS_Store
+.vscode/
+.idea/
